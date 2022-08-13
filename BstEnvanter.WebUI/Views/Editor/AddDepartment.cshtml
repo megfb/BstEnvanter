@@ -1,0 +1,22 @@
+﻿@model BstEnvanter.WebUI.Models.AddDepartmentViewModel
+@{
+    ViewData["Title"] = "AddDepartment";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a New Department</h1>
+        <hr />
+    </div>
+    <form asp-action="addDepartment" class="col-md-8" method="post">
+        <div class="form-group">
+            <input asp-for="department.name" class="form-control" type="text" placeholder="Name" />
+            <span asp-validation-for="department.name"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofdepartment" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+
+</div>

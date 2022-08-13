@@ -1,0 +1,78 @@
+﻿@model BstEnvanter.WebUI.Models.AddProductAtCommonViewModel
+@{
+    ViewData["Title"] = "AddProductToCommon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="containter-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Set a Product to Department</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="border col-md-8 border border-dark rounded">
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.name" class="d-inline"><b>Product Name:</b></label>
+
+                <label asp-for="status.Product.name">@Model.status.Product.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.Category.name" class="d-inline"><b>Category:</b></label>
+                <label asp-for="status.Product.Category.name" class="d-inline">@Model.status.Product.Category.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.Brand.name" class="d-inline"><b>Brand:</b></label>
+                <label asp-for="status.Product.Brand.name" class="d-inline">@Model.status.Product.Brand.name</label>
+
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.Model.name" class="d-inline"><b>Model:</b></label>
+                <label asp-for="status.Product.Model.name" class="d-inline">@Model.status.Product.Model.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.serialNo" class="d-inline"><b>Serial No:</b></label>
+                <label asp-for="status.Product.serialNo" class="d-inline">@Model.status.Product.serialNo</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="status.Product.inventoryNo" class="d-inline"><b>Inventory No:</b></label>
+                <label asp-for="status.Product.inventoryNo" class="d-inline">@Model.status.Product.inventoryNo</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="status.Product.prop1" class="d-inline"><b>Prop-1:</b></label>
+                <label asp-for="status.Product.prop1">@Model.status.Product.prop1</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="status.Product.prop2" class="d-inline"><b>Prop-2:</b></label>
+                <label asp-for="status.Product.prop2">@Model.status.Product.prop2</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="status.Product.prop3" class="d-inline"><b>Prop-3:</b></label>
+                <label asp-for="status.Product.prop3">@Model.status.Product.prop3</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="status.Product.prop4" class="d-inline"><b>Prop-4:</b></label>
+                <label asp-for="status.Product.prop4">@Model.status.Product.prop4</label>
+            </div>
+        </div>
+    </div>
+    <form class="col-md-8" method="post" asp-action="addproducttocommon">
+        <div class="form-group">
+            <input class="form-control" asp-for="status.definition" />
+            <span asp-validation-for="status.definition"></span>
+        </div>
+
+        <div class="form-group">
+            <select asp-for="status.campusId" class="form-control" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
+        </div>
+        <div class="mt-1 text-end">
+            <input type="hidden" asp-for="status.id" />
+            <input type="hidden" asp-for="status.commonId" value="@Model.common.id" />
+            <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
+            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+            <input type="hidden" asp-for="status.bstId" value="ID" />
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>
+

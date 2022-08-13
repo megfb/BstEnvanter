@@ -1,0 +1,48 @@
+﻿@model BstEnvanter.WebUI.Models.DetailPersonelViewModel
+@{
+    ViewData["Title"] = "DetailPersonel";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel Detail</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class=" border boder-dark col-md-12">
+            <div class="form-group border-bottom">
+                <label asp-for="personel.name" class="d-inline"><b>Personel Name:</b></label>
+
+                <label asp-for="personel.name">@Model.personel.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="personel.surname" class="d-inline"><b>Personel Surname:</b></label>
+
+                <label asp-for="personel.surname">@Model.personel.surname</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="personel.age" class="d-inline"><b>Personel Age:</b></label>
+
+                <label asp-for="personel.age">@Model.personel.age</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="personel.Sex.name" class="d-inline"><b>Personel Sex:</b></label>
+                <label asp-for="personel.Sex.name">@Model.personel.Sex.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="personel.Department.name" class="d-inline"><b>Department Location:</b></label>
+                <label asp-for="personel.Department.name">@Model.personel.Department.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="personel.roomNo" class="d-inline"><b>Room No:</b></label>
+                <label asp-for="personel.roomNo">@Model.personel.roomNo</label>
+            </div>
+
+            <div class="mt-1 text-end">
+                <a class="btn btn-warning" asp-controller="editor" asp-action="updatepersonel" asp-route-id="@Model.personel.id">Update </a>
+                <a class="btn btn-danger" asp-controller="editor" asp-action="deletepersonel" asp-route-id="@Model.personel.id">Delete</a>
+                <a class="btn btn-info" asp-controller="editor" asp-action="listofpersonel">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

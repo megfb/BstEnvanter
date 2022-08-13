@@ -1,0 +1,419 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateProductViewModel
+@{
+    ViewData["Title"] = "DetailProduct";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Product Details</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="row col-md-12">
+            @if (Model.status.personelId == null && Model.status.commonId == null)
+            {
+                <div class=" border col-md-6 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Product Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>@Model.status.Product.Category.name</td>
+                            </tr>
+                            <tr>
+                                <td>Brand:</td>
+                                <td>@Model.status.Product.Brand.name</td>
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                <td>@Model.status.Product.Model.name</td>
+                            </tr>
+                            <tr>
+                                <td>Serial No:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Inventory No:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-1:</td>
+                                <td>@Model.status.Product.prop1</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-2:</td>
+                                <td>@Model.status.Product.prop2</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-3:</td>
+                                <td>@Model.status.Product.prop3</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-4:</td>
+                                <td>@Model.status.Product.prop4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-6 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Specialist Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                @*<td>@Model.status.Personel.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Surname:</td>
+                                @*<td>@Model.status.Personel.surname</td>*@
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                @*<td>@Model.status.Personel.age</td>*@
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                @*<td>@Model.status.Personel.Sex.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                @*<td>@Model.status.Personel.Department.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                @*<td>@Model.status.Personel.roomNo</td>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 border border-rounded  rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Status Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Definition:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Campus:</td>
+                                <td>@Model.status.Campus.name</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Update:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Bst Id:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-end mt-2 pb-3">
+                        <a class="btn btn-danger text-black" asp-controller="editor" asp-action="DeleteProductAtPersonel" asp-route-id="@Model.status.id">Delete</a>
+                        <a class="btn btn-warning text-end" asp-controller="editor" asp-action="UpdateProductatpersonel" asp-route-id="@Model.status.id">Update </a>
+                        <a class="btn btn-info text-end" asp-controller="editor" asp-action="listofproductatpersonel">Back</a>
+                    </div>
+                </div>
+            }
+            @if (Model.status.personelId != null && Model.status.commonId == null)
+            {
+                <div class=" border col-md-4 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Product Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>@Model.status.Product.Category.name</td>
+                            </tr>
+                            <tr>
+                                <td>Brand:</td>
+                                <td>@Model.status.Product.Brand.name</td>
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                <td>@Model.status.Product.Model.name</td>
+                            </tr>
+                            <tr>
+                                <td>Serial No:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Inventory No:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-1:</td>
+                                <td>@Model.status.Product.prop1</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-2:</td>
+                                <td>@Model.status.Product.prop2</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-3:</td>
+                                <td>@Model.status.Product.prop3</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-4:</td>
+                                <td>@Model.status.Product.prop4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Personel Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>@Model.status.Personel.name</td>
+                            </tr>
+                            <tr>
+                                <td>Surname:</td>
+                                <td>@Model.status.Personel.surname</td>
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                <td>@Model.status.Personel.age</td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td>@Model.status.Personel.Sex.name</td>
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                <td>@Model.status.Personel.Department.name</td>
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                <td>@Model.status.Personel.roomNo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Specialist Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                @*<td>@Model.status.Personel.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Surname:</td>
+                                @*<td>@Model.status.Personel.surname</td>*@
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                @*<td>@Model.status.Personel.age</td>*@
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                @*<td>@Model.status.Personel.Sex.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                @*<td>@Model.status.Personel.Department.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                @*<td>@Model.status.Personel.roomNo</td>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 border border-rounded  rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Status Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Definition:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Campus:</td>
+                                <td>@Model.status.Campus.name</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Update:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Bst Id:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-end mt-2 pb-3">
+                        <a class="btn btn-danger text-black" asp-controller="editor" asp-action="DeleteProductAtPersonel" asp-route-id="@Model.status.id">Delete</a>
+                        <a class="btn btn-warning text-end" asp-controller="editor" asp-action="UpdateProductatpersonel" asp-route-id="@Model.status.id">Update </a>
+                        <a class="btn btn-info text-end" asp-controller="editor" asp-action="listofproductatpersonel">Back</a>
+                    </div>
+                </div>
+
+            }
+            @if (Model.status.commonId != null)
+            {
+                <div class=" border col-md-4 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Product Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>@Model.status.Product.Category.name</td>
+                            </tr>
+                            <tr>
+                                <td>Brand:</td>
+                                <td>@Model.status.Product.Brand.name</td>
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                <td>@Model.status.Product.Model.name</td>
+                            </tr>
+                            <tr>
+                                <td>Serial No:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Inventory No:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-1:</td>
+                                <td>@Model.status.Product.prop1</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-2:</td>
+                                <td>@Model.status.Product.prop2</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-3:</td>
+                                <td>@Model.status.Product.prop3</td>
+                            </tr>
+                            <tr>
+                                <td>Prop-4:</td>
+                                <td>@Model.status.Product.prop4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Common Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Department:</td>
+                                <td>@Model.status.Common.department.name</td>
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                <td>@Model.status.Common.CLocation.name</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Specialist Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                @*<td>@Model.status.Personel.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Surname:</td>
+                                @*<td>@Model.status.Personel.surname</td>*@
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                @*<td>@Model.status.Personel.age</td>*@
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                @*<td>@Model.status.Personel.Sex.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                @*<td>@Model.status.Personel.Department.name</td>*@
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                @*<td>@Model.status.Personel.roomNo</td>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 border border-rounded rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Status Details</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Definition:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Campus:</td>
+                                <td>@Model.status.Campus.name</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Update:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Bst Id:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-end mt-2 pb-3">
+                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproductatcommon" asp-route-id="@Model.status.id" asp-route-commonId="@Model.status.commonId">Delete</a>
+                        <a class="btn btn-warning text-end" asp-controller="editor" asp-action="updatecommon" asp-route-id="@Model.status.id">Update </a>
+                        <a class="btn btn-info text-end" asp-controller="editor" asp-action="listofproductatcommon">Back</a>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+</div>

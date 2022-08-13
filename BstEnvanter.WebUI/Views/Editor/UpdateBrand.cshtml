@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateBrandViewModel;
+@{
+    ViewData["Title"] = "UpdateBrand";
+    Layout = "~/Views/_Layout.cshtml";
+    <link rel="stylesheet" type="text/css" href="/css/UpdateBrand.css">
+
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Update a Brand</h1>
+        <hr />
+    </div>
+    <form asp-action="UpdateBrand" class="col-md-8" method="post">
+        <div class="form-group">
+            <input asp-for="Brand.name" class="form-control" type="text" placeholder="@Model.Brand.name" />
+            <span asp-validation-for="Brand.name"></span>
+        </div>
+        <div class="form-group text-end">
+            <input type="hidden" asp-for="Brand.id" />
+            <input type="submit" value="Update" class="btn btn-success col-md-2">
+            <a class="btn btn-info col-md-2" asp-action="listofbrand">Back</a>
+        </div>
+    </form>
+</div>

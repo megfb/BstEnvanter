@@ -1,0 +1,22 @@
+﻿@model BstEnvanter.WebUI.Models.AddCategoryViewModel
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a New Category</h1>
+        <hr />
+    </div>
+    <form class="col-md-8" method="post" asp-action="addcategory">
+        <div class="form-group">
+            <input class="form-control" asp-for="category.name" />
+            <span asp-validation-for="category.name"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofcategory" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>

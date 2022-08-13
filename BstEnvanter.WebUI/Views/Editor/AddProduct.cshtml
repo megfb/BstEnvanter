@@ -1,0 +1,106 @@
+﻿@model BstEnvanter.WebUI.Models.AddProductViewModel
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a New Product</h1>
+        <hr />
+    </div>
+    <form asp-action="addproduct" class="col-md-8 p-3 mb-3 border rounded" method="post">
+        <div class="form-group row">
+            <label for="inputCategory" class="col-md-2 col-form-label">Category</label>
+            <div class="col-md-10">
+                <select asp-for="status.Product.categoryId" id="inputCategory" class="form-control" asp-items="@(new SelectList(Model.category,"id","name"))"></select>
+                <span asp-validation-for="status.Product.categoryId"></span>
+                <div class="text-end">
+                    <a asp-action="addcategory">add a new category</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputBrand" class="col-md-2 col-form-label">Brand</label>
+            <div class="col-md-10">
+                <select asp-for="status.Product.brandId" id="inputBrand" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addbrand">add a new brand</a>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label for="inputModel" class="col-md-2 col-form-label">Model</label>
+            <div class="col-md-10">
+                <select id="inputModel" asp-for="status.Product.modelId" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addmodel">add a new model</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputName">Name</label>
+            <div class="col-md-10">
+                <input id="inputName" asp-for="status.Product.name" class="form-control" type="text" placeholder="Name" />
+                <span class="text-danger fw-bold" asp-validation-for="product.name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputSerialNo">Serial Number</label>
+            <div class="col-md-10">
+                <input asp-for="status.Product.serialNo" class="form-control" type="text" placeholder="Serial No" />
+                <span asp-validation-for="status.Product.serialNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputInventoryNo">Inventory Number</label>
+            <div class="col-md-10">
+                <input id="inputInventoryNo" asp-for="status.Product.inventoryNo" class="form-control" type="text" placeholder="Inventory No" />
+                <span asp-validation-for="status.Product.inventoryNo"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pt-3">
+                <label class="form-label" for="inputProp1">Prop-1</label>
+                <input asp-for="status.Product.prop1" id="inputProp1" class="form-control" type="text" placeholder="Prop-1" />
+                <span asp-validation-for="status.Product.prop1"></span>
+            </div>
+            <div class="col-md-6 pt-3">
+                <label class="form-label" for="inputProp2">Prop-2</label>
+                <input asp-for="status.Product.prop2" id="inputProp2" class="form-control" type="text" placeholder="Prop-2" />
+                <span asp-validation-for="status.Product.prop2"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pt-3">
+                <label class="form-label" for="inputProp3">Prop-3</label>
+                <input asp-for="status.Product.prop3" id="inputProp3" class="form-control" type="text" placeholder="Prop-3" />
+                <span asp-validation-for="status.Product.prop3"></span>
+            </div>
+            <div class="col-md-6 pt-3">
+                <label class="form-label" for="inputProp4">Prop-4</label>
+                <input asp-for="status.Product.prop4" id="inputProp4" class="form-control" type="text" placeholder="Prop-4" />
+                <span asp-validation-for="status.Product.prop3"></span>
+            </div>
+        </div>
+        <div class="col-12 pt-3">
+            <label for="inputCampus">Campus</label>
+            <select asp-for="status.campusId" class="form-select mt-2 form-control" id="inputCampus" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
+        </div>
+        <div class="col-12 pt-3">
+            <label for="inputDefinition" class="form-label">Definition</label>
+            <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="Definition" /></textarea>
+            <span asp-validation-for="status.definition"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+            <input type="hidden" asp-for="status.bstId" value="ID" />
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>

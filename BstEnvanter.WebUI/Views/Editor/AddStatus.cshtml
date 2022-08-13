@@ -1,0 +1,74 @@
+﻿@model BstEnvanter.WebUI.Models.AddStatusViewModel
+@{
+    ViewData["Title"] = "AddStatus";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="containter-fluid">
+    <div class="row">
+        <div class="border col-md-8 border border-dark rounded">
+            <div class="form-group border-bottom">
+                <label asp-for="product.name" class="d-inline"><b>Product Name:</b></label>
+
+                <label asp-for="product.name">@Model.product.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="product.Category.name" class="d-inline"><b>Category:</b></label>
+                <label asp-for="product.Category.name" class="d-inline">@Model.product.Category.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="product.Brand.name" class="d-inline"><b>Brand:</b></label>
+                <label asp-for="product.Brand.name" class="d-inline">@Model.product.Brand.name</label>
+
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="product.Model.name" class="d-inline"><b>Model:</b></label>
+                <label asp-for="product.Model.name" class="d-inline">@Model.product.Model.name</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="product.serialNo" class="d-inline"><b>Serial No:</b></label>
+                <label asp-for="product.serialNo" class="d-inline">@Model.product.serialNo</label>
+            </div>
+            <div class="form-group border-bottom">
+                <label asp-for="product.inventoryNo" class="d-inline"><b>Inventory No:</b></label>
+                <label asp-for="product.inventoryNo" class="d-inline">@Model.product.inventoryNo</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="product.prop1" class="d-inline"><b>Prop-1:</b></label>
+                <label asp-for="product.prop1">@Model.product.prop1</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="product.prop2" class="d-inline"><b>Prop-2:</b></label>
+                <label asp-for="product.prop2">@Model.product.prop2</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="product.prop3" class="d-inline"><b>Prop-3:</b></label>
+                <label asp-for="product.prop3">@Model.product.prop3</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="product.prop4" class="d-inline"><b>Prop-4:</b></label>
+                <label asp-for="product.prop4">@Model.product.prop4</label>
+            </div>
+        </div>
+    </div>
+    <form class="col-md-8" method="post" asp-action="addstatus">
+        <div class="form-group">
+            <input class="form-control" asp-for="status.definition" />
+            <span asp-validation-for="status.definition"></span>
+        </div>
+        <div class="form-group">
+            <select asp-for="status.personelId"
+                    asp-items='new SelectList(from x in Model.personel select new { Value = x.id ,Text = x.name + " " + x.surname + " " + x.age}, "Value","Text")'></select>
+        </div>
+        <div class="form-group">
+            <select asp-for="status.campusId" class="form-control" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
+        </div>
+        <div class="mt-1 text-end">
+            <input type="hidden" asp-for="status.productId" value="@Model.product.id" />
+            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+            <input type="hidden" asp-for="status.bstId" value="ID" />
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>

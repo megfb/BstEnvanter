@@ -1,0 +1,24 @@
+﻿@model BstEnvanter.WebUI.Models.AddCommonViewModel
+@{
+    ViewData["Title"] = "AddCommon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="containter-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a Common</h1>
+        <hr />
+    </div>
+    <form class="col-md-8" method="post" asp-action="addproducttocommon">
+        <div class="form-group">
+            <select asp-for="common.departmentId" class="form-control" asp-items="@(new SelectList(Model.department,"id","name"))"></select>
+        </div>
+        <div class="form-group">
+            <select asp-for="common.cLocationId" class="form-control" asp-items="@(new SelectList(Model.clocation,"id","name"))"></select>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2" asp-route-id="@Model.id">Add</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfCampusViewModel
+@{
+    ViewData["Title"] = "ListOfCampus";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Campus List</h1>
+        <hr />
+    </div>
+        <a asp-action="addcampus" class="btn btn-secondary">Add A Campus</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                foreach (var item in Model.campus)
+                {
+                        <tr>
+                            <td scope="col">@item.id</td>
+                            <td scope="col">@item.name</td>
+                            <td scope="col">
+                                <a class="btn btn-warning" asp-controller="editor" asp-action="Updatecampus" asp-route-id="@item.id">Update </a>
+                            </td>
+                            <td scope="col">
+                                <a class="btn btn-danger" asp-controller="editor" asp-action="deletecampus" asp-route-id="@item.id">Delete</a>
+                            </td>
+                        </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+
+</div>

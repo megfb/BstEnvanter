@@ -1,0 +1,24 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateDepartmentViewModel
+@{
+    ViewData["Title"] = "UpdateDepartment";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Update a Department</h1>
+        <hr />
+    </div>
+    <form asp-action="updatedepartment" class="col-md-8" method="post">
+        <div class="form-group">
+            <input asp-for="department.name" class="form-control" type="text" placeholder="@Model.department.name" />
+            <span asp-validation-for="department.name"></span>
+        </div>
+        <div class="form-group text-end">
+            <input type="hidden" asp-for="department.id" />
+            <input type="submit" value="Update" class="btn btn-success col-md-2">
+            <a class="btn btn-info col-md-2" asp-action="listofdepartment">Back</a>
+        </div>
+    </form>
+</div>
+

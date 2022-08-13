@@ -1,0 +1,22 @@
+﻿@model BstEnvanter.WebUI.Models.AddModelViewModel
+@{
+    ViewData["Title"] = "AddModel";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a New Model</h1>
+        <hr />
+    </div>
+    <form asp-action="addmodel" class="col-md-8" method="post">
+        <div class="form-group">
+            <input asp-for="model.name" class="form-control" type="text" placeholder="Name" />
+            <span asp-validation-for="model.name"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Add</button>
+            <a asp-action="listofmodel" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>

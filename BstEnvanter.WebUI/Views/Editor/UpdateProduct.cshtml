@@ -1,0 +1,57 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateProductViewModel
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Update a Product</h1>
+        <hr />
+    </div>
+    <form method="post" asp-action="updateproduct" class="col-md-8">
+        <div class="form-group">
+            <input asp-for="product.name" class="form-control" type="text" placeholder="@Model.product.name" />
+            <span asp-validation-for="product.name"></span>
+        </div>
+        <div class="form-group">
+            <select asp-for="product.categoryId" class="form-control" asp-items="@(new SelectList(Model.category,"id","name"))"></select>
+        </div>
+        <div class="form-group">
+            <select asp-for="product.brandId" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
+        </div>
+                <div class="form-group">
+            <select asp-for="product.modelId" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.serialNo" placeholder="@Model.product.serialNo" />
+            <span asp-validation-for="product.serialNo"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.inventoryNo" placeholder="@Model.product.inventoryNo" />
+            <span asp-validation-for="product.inventoryNo"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.prop1" placeholder="@Model.product.prop1" />
+            <span asp-validation-for="product.prop1"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.prop2" placeholder="@Model.product.prop2" />
+            <span asp-validation-for="product.prop2"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.prop3" placeholder="@Model.product.prop3" />
+            <span asp-validation-for="product.prop3"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" asp-for="product.prop4" placeholder="@Model.product.prop4" />
+            <span asp-validation-for="product.prop4"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <input type="hidden" asp-for="product.id" />
+            <button class="btn btn-primary col-md-2">Update</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+        </div>
+
+    </form>
+</div>

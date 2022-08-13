@@ -1,0 +1,30 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body {
+    font-family: 'Roboto', sans-serif; font-weight:600
+
+}
+td {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600
+}
+a{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600!important
+}
+button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600
+}
+input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600!important
+}
+select {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500 !important
+}
+

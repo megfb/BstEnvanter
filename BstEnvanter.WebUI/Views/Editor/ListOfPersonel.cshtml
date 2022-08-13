@@ -1,0 +1,46 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfPersonelViewModel
+@{
+    ViewData["Title"] = "ListOfPersonel";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel List</h1>
+        <hr />
+    </div>
+    <a asp-action="addpersonel" class="btn btn-secondary">Add A Personel</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Room No</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.personel)
+                {
+                    <tr>
+                        <td scope="col">@item.id</td>
+                        <td scope="col">@item.name</td>
+                        <td scope="col">@item.surname</td>
+                        <td scope="col">@item.roomNo</td>
+                        <td scope="col">
+                            <a class="btn btn-warning" asp-controller="editor" asp-action="updatepersonel" asp-route-id="@item.id">Update </a>
+                        </td>
+                        <td scope="col">
+                            <a class="btn btn-danger" asp-controller="editor" asp-action="deletepersonel" asp-route-id="@item.id">Delete</a>
+                        </td>
+                        <td scope="col">
+                            <a class="btn btn-info" asp-controller="editor" asp-action="detailpersonel" asp-route-id="@item.id">Detail</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
