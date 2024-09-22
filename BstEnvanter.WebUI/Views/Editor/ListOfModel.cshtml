@@ -1,0 +1,86 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfModelViewModel
+
+@{
+    ViewData["Title"] = "Model Listesi";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Model Listesi</h1>
+        <hr />
+    </div>
+    <a asp-action="addmodel" class="btn btn-secondary">Yeni Model</a>
+    <div class="table-responsive pt-3">
+
+        <table id="modelTable" class="table align-middle table-hover table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Güncelle</th>
+                    <th scope="col">Sil</th>
+                    <th scope="col">Yazdır</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var item in Model.model)
+                    {
+                        int id = item.id;
+                        string name = "name" + id.ToString();
+                        <tr>
+                            <td scope="col">@item.id</td>
+                            <td scope="col">@item.name</td>
+                            <td scope="col">
+                                <a class="btn text-white" style="background-color:#90A4AE" asp-controller="editor" asp-action="updatemodel" asp-route-id="@item.id">Güncelle </a>
+                            </td>
+                            <td scope="col">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@name">
+                                    Sil
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="@name" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-start">
+                                                Silme işlemi için emin misiniz? Bu işlem geri alınamaz!
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger" asp-controller="editor" asp-action="deletemodel" asp-route-id="@item.id">Evet</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Example single danger button -->
+                                <div class="btn-group">
+                                    <button type="button" style="border:none;" class="bg-white fs-1 bi bi-printer rounded-circle text-primary" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofmodel" asp-route-exportName="Model_Ürün_Listesi" asp-route-id="@item.id">Depo</a></li>
+                                        <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofmodelatpersonel" asp-route-exportName="Personel_Model_Ürün_Listesi" asp-route-id="@item.id">Personel</a></li>
+                                        <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofmodelatcommon" asp-route-exportName="Ortak_Model_Ürün_Listesi" asp-route-id="@item.id">Ortak</a></li>
+
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="~/js/modelTable.js" type="text/javascript"></script>

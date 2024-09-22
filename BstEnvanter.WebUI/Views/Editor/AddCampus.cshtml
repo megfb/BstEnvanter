@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.AddCampusViewModel
+@{
+    ViewData["Title"] = "Yeni Yerleşke";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Yerleşke Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addcampus" class="col-md-8" method="post">
+        <div class="form-group row">
+            <label for="inputCampus" class="col-md-2 col-form-label">Yerleşke</label>
+            <div class="col-md-10">
+                <input asp-for="campus.name" id="inputCampus" class="form-control" type="text" placeholder="Yerleşke" />
+                <span class="text-danger" asp-validation-for="campus.name"></span>
+            </div>
+        </div>
+        <div class="mt-3 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofcampus" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

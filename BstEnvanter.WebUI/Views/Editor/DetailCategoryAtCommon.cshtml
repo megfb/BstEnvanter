@@ -1,0 +1,64 @@
+﻿@model BstEnvanter.WebUI.Models.DetailCategoryViewModel
+
+@{
+    ViewData["Title"] = "DetailCategoryAtCommon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Common @Model.category.name List</h1>
+        <hr />
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a type="button" asp-action="detailcategory" asp-route-id="@Model.id" class="btn btn-secondary">Product</a>
+        <a type="button" asp-action="detailcategoryatpersonel" asp-route-id="@Model.id" class="btn btn-secondary">Personel</a>
+        <a type="button" asp-action="detailcategoryatcommon" asp-route-id="@Model.id" class="btn btn-secondary">Commons</a>
+        <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Model</th>
+                <th scope="col">Serial No</th>
+                <th scope="col">Inventory No</th>
+                <th scope="col">Department</th>
+                <th scope="col">Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.status)
+                {
+                    @if (item.personelId == null && item.commonId != null)
+                    {
+                        <tr>
+
+                            <td scope="col">@item.Product.Category.name</td>
+                            <td scope="col">@item.Product.Brand.name</td>
+                            <td scope="col">@item.Product.Model.name</td>
+                            <td scope="col">@item.Product.serialNo</td>
+                            <td scope="col">@item.Product.inventoryNo</td>
+                            <td scope="col">@item.Common.department.name</td>
+                            <td scope="col">@item.Common.CLocation.name</td>
+                            <td scope="col">
+                                <a class="btn btn-warning" asp-controller="editor" asp-action="updatecommon" asp-route-id="@item.id">Update </a>
+                            </td>
+                            <td scope="col">
+                                <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproductatcommon" asp-route-id="@item.id" asp-route-commonId="@item.commonId">Delete</a>
+                            </td>
+                            <td scope="col">
+                                <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a class="btn btn-primary col-md-2" asp-action="listofcategory">Back</a>
+    </div>
+</div>

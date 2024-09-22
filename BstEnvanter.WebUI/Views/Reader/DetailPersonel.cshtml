@@ -1,0 +1,194 @@
+﻿@model BstEnvanter.WebUI.Models.DetailPersonelViewModel
+@{
+    ViewData["Title"] = "DetailPersonel";
+    Layout = "~/Views/_readerLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel Detayları<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofpersonel" asp-route-exportName="Personel_Ürün_Listesi" asp-route-id="@Model.personel.id"><i class="fs-1 bi bi-printer"></i></a></h1>
+        <hr />
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 border rounded-3 bg-light">
+            <div class="row pt-3">
+                <div class="col-md-5 text-center mx-auto">
+                    <img class="img-fluid rounded-circle" src="/img/avatar.png" />
+                </div>
+                <div class="row text-center p-3">
+                    <h3>@Model.personel.name @Model.personel.surname</h3>
+                    <h5 class="text-muted">@Model.personel.eMail</h5>
+                    @if (Model.personel.departmentId != null)
+                    {
+                        <h5 class="text-muted">@Model.personel.Department.name</h5>
+
+                    }
+                </div>
+                <div class="row text-center">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 bg-light card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Ad Soyad</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.personel.name @Model.personel.surname
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.personel.eMail
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Cinsiyet</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.personel.Sex.name
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Yaş</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.personel.age
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Lokasyon</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @if (Model.personel.cLocationId != null)
+                        {
+                            @Model.personel.CLocation.name
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pt-3 col-md-12">
+        @foreach (var item in Model.status)
+        {
+            string cls = "card mb-3 ";
+            if (item.serviceId != null)
+            {
+                cls = "card mb-3 bg-danger";
+            }
+
+            <div class="@cls me-2" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4 ms-0">
+                        <img src="~/productImages/@item.Product.imgName" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body ">
+                            <h5 class="card-title">@item.Product.Category.name</h5>
+                            <p class="card-text">@item.Product.Brand.name</p>
+                            <p class="card-text">@item.Product.Model.name</p>
+                            <p class="card-text"><small class="text-muted">Son güncelleştirme @item.dateOfUpdate.ToShortDateString()</small></p>
+                            <div class="text-end">
+                                <a class="btn btn-secondary" asp-action="detailproduct" asp-route-id="@item.id">Detay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr />
+        <div class="text-end">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofpersonel">Geri</a>
+        </div>
+    </div>
+</div>
+@*<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel Detayları<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofpersonel" asp-route-exportName="Personel_Ürün_Listesi" asp-route-id="@Model.personel.id"><i class="fs-1 bi bi-printer"></i></a></h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="border border-rounded rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Personel Detayları</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Ad:</td>
+                        <td>@Model.personel.name</td>
+                    </tr>
+                    <tr>
+                        <td>Soyad:</td>
+                        <td>@Model.personel.surname</td>
+                    </tr>
+                    <tr>
+                        <td>Yaş:</td>
+                        <td>@Model.personel.age</td>
+                    </tr>
+                    <tr>
+                        <td>Cinsiyet:</td>
+                        <td>@Model.personel.Sex.name</td>
+                    </tr>
+                    <tr>
+                        <td>Departman:</td>
+                        @if (Model.personel.departmentId != null)
+                        {
+                            <td>@Model.personel.Department.name</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Lokasyon:</td>
+                        @if (Model.personel.cLocationId != null)
+                        {
+                            <td>@Model.personel.CLocation.name</td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td>E-Mail:</td>
+                        <td>@Model.personel.eMail</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row pt-3 col-md-12">
+        @foreach (var item in Model.status)
+        {
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3 col-md-12">
+                    <div class="card-header">@item.Product.Category.name</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Product.Brand.name</h5>
+                        <h5 class="card-title">@item.Product.Model.name</h5>
+                        <p class="card-text">@item.Product.serialNo</p>
+                        <p class="card-text">@item.Product.inventoryNo</p>
+                        <div class="text-end">
+                            <a class="btn btn-secondary" asp-action="detailproduct" asp-route-id="@item.id">Detay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr />
+        <div class="text-end">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofpersonel">Geri</a>
+        </div>
+    </div>
+</div>*@

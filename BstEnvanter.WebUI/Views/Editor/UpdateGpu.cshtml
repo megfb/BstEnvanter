@@ -1,0 +1,27 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateGpuViewModel
+@{
+    ViewData["Title"] = "Ekran Kartı Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Ekran Kartı Güncelle</h1>
+        <hr />
+    </div>
+    <form asp-action="updategpu" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
+            <div class="col-md-10">
+                <input asp-for="gpu.name" id="inputGpu" class="form-control" type="text" placeholder="@Model.gpu.name" />
+                <span class="text-danger" asp-validation-for="gpu.name"></span>
+            </div>
+        </div>
+        <div class="form-group text-end mt-3">
+            <input type="hidden" asp-for="gpu.id" />
+            <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofgpu">Geri</a>
+        </div>
+    </form>
+</div>
+

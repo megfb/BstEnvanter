@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.AddCpuViewModel
+@{
+    ViewData["Title"] = "Yeni İşlemci";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni İşlemci Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addcpu" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
+            <div class="col-md-10">
+                <input asp-for="cpu.name" id="inputCpu" class="form-control" type="text" placeholder="İşlemci" />
+                <span class="text-danger" asp-validation-for="cpu.name"></span>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofcpu" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

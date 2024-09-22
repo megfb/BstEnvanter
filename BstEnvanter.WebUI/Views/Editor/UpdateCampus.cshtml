@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateCampusViewModel
+@{
+    ViewData["Title"] = "Yerleşke Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="jumbotron jumbotron-fluid">
+    <h1 class="display-4">Yerleşke Güncelle</h1>
+    <hr />
+</div>
+<div class="container-fluid">
+    <form asp-action="updatecampus" class="col-md-8" method="post">
+        <div class="form-group row">
+            <label for="inputCampus" class="col-md-2 col-form-label">Yerleşke</label>
+            <div class="col-md-10">
+                <input asp-for="campus.name" id="inputCampus" class="form-control" type="text" placeholder="@Model.campus.name" />
+                <span class="text-danger" asp-validation-for="campus.name"></span>
+            </div>
+        </div>
+        <div class="form-group mt-3 text-end">
+            <input type="hidden" asp-for="campus.id" />
+            <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofcampus">Geri</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,87 @@
+﻿@{
+    string rol = "editor";
+    string layout = "~/Views/_Layout.cshtml";
+    if (User.IsInRole("user"))
+    {
+        rol = "reader";
+        layout = "~/Views/_readerLayout.cshtml";
+    }
+    ViewData["Title"] = "index";
+    Layout = layout;
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" />
+
+}
+@{
+
+}
+
+<div class="container-fluid pt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="col-md-12">
+                <div class="card ">
+                    <img src="/img/avatar.png" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <a asp-controller="user" asp-action="profile" class="btn btn-dark  col-md-12 col-sm-12">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#F3B200">
+                        <h1><a asp-controller="@rol" asp-action="listofproduct" class="text-light" style="text-decoration:none">Ürünler</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#2E8DEF">
+                        <h1><a asp-controller="@rol" asp-action="listofcategory" class="text-light" style="text-decoration:none">Kategoriler</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#A700AE">
+                        <h1><a asp-controller="@rol" asp-controller="editor" asp-action="listofpersonel" class="text-light" style="text-decoration:none">Personeller</a></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#643EBF">
+                        <h1><a asp-controller="@rol" asp-action="listofbrand" class="text-light" style="text-decoration:none">Markalar</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#BF1E4B">
+                        <h1><a asp-controller="@rol" asp-action="listofcampus" class="text-light" style="text-decoration:none">Yerleşkeler</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="col-md-12 rounded-2 anasayafadiv" style="background-color:#DC572E;">
+                        <h1><a asp-controller="@rol" asp-action="listofdepartment" class="text-light" style="text-decoration:none">Departmanlar</a></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <div class="text-white row rounded-2">
+        <div class="row mx-auto">
+            <div class="col-md-4 anasayafadiv mt-3 rounded-2 " style="background-color: #B81B6C">
+                <h1><a class="text-light" asp-controller="@rol" asp-action="listofcpu" style="text-decoration: none">İşlemciler</a></h1>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 anasayafadiv mt-3 rounded-2" style="min-height:200px;background-color:#00AAAA">
+
+                    <h1><a class="text-light" asp-controller="@rol" asp-action="listofharddrive" style="text-decoration:none">Sabit Diskler</a></h1>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3 rounded-2 anasayafadiv" style="background-color:#00C13F;">
+                <h1><a asp-action="listofram" asp-controller="@rol" class="text-light" style="text-decoration:none">Ram bellekler</a></h1>
+            </div>
+
+        </div>
+    </div>
+</div>
+

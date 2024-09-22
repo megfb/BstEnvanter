@@ -1,0 +1,158 @@
+﻿@model BstEnvanter.WebUI.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Profile";
+    if (User.IsInRole("admin") || User.IsInRole("editor"))
+    {
+        Layout = "~/Views/_Layout.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/_readerLayout.cshtml";
+    }
+}
+
+@*<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Profil</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="border border-rounded rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Kullanıcı Detayı</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Ad:</td>
+                        <td>@Model.user.name</td>
+                    </tr>
+                    <tr>
+                        <td>Soyad:</td>
+                        <td>@Model.user.surname</td>
+                    </tr>
+                    <tr>
+                        <td>Yaş:</td>
+                        <td>@Model.user.age</td>
+                    </tr>
+                    <tr>
+                        <td>Cinsiyet:</td>
+                        <td>@Model.user.gender</td>
+                    </tr>
+                    <tr>
+                        <td>Departman:</td>
+                        <td>@Model.user.department</td>
+                    </tr>
+                    <tr>
+                        <td>Lokasyon:</td>
+                        <td>@Model.user.roomNo</td>
+                    </tr>
+                    <tr>
+                        <td>Ünvan:</td>
+                        <td>@Model.user.title</td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail:</td>
+                        <td>@Model.user.Email</td>
+                    </tr>
+                    <tr>
+                        <td>Rol:</td>
+                        @foreach (var item in Model.role)
+                        {
+                            <td>@item</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-end">
+                <a class="btn btn-primary" asp-action="updateprofile">Güncelle</a>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Profil</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-3 border rounded-3 bg-light">
+            <div class="row pt-3">
+                <div class="col-md-5 text-center mx-auto">
+                    <img class="img-fluid rounded-circle" src="/img/avatar.png" />
+                </div>
+                <div class="row text-center p-3">
+                    <h3>@Model.user.name @Model.user.surname</h3>
+                    <h5 class="text-muted">@Model.user.Email</h5>
+
+                    <h5 class="text-muted">@Model.user.title</h5>
+
+                </div>
+                <div class="row text-center">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 bg-light card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Departman</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.user.department
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Cinsiyet</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.user.gender
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Yaş</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @Model.user.age
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Lokasyon</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+
+                        @Model.user.roomNo
+
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Rol</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+
+                        @foreach (var item in Model.role)
+                        {
+                            @item
+                        }
+                    </div>
+                </div>
+                <hr>
+                <div class="text-end pb-3">
+                    <a class="btn text-white" style="background-color:#90A4AE" asp-action="updateprofile">Güncelle </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

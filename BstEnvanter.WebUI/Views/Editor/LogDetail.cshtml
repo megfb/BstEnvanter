@@ -1,0 +1,23 @@
+﻿@model BstEnvanter.WebUI.Models.LogDetailViewModel
+@{
+    ViewData["Title"] = "LogDetail";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Log</h1>
+        <hr />
+    </div>
+    <form asp-action="logdetail" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputBrand" class="col-md-2 col-form-label">Tarih</label>
+            <div class="col-md-10">
+                <input asp-for="log" id="inputBrand" class="form-control" type="date"/>
+            </div>
+        </div>
+        <div class="mt-3 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+        </div>
+    </form>
+</div>

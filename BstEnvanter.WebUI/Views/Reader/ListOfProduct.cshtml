@@ -1,0 +1,114 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfProductViewModel
+@{
+    ViewData["Title"] = "ListOfProduct";
+    Layout = "~/Views/_readerLayout.cshtml";
+}
+<div class="container-fluid ">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">
+            Ürün Listesi<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofproducts" asp-route-exportName="Ürün_Listesi"><i class="fs-1 bi bi-printer"></i></a>
+        </h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="btn-group  col-md-6 flex-column flex-sm-row" role="group" aria-label="Basic mixed styles example">
+            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Depo</a>
+            <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
+            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Ortak</a>
+            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Servis</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="list-group-horizontal list-group list-group-flush flex-column flex-sm-row col-md-8">
+            @foreach (var item in Model.category)
+            {
+                string css = "list-group-item list-group-item-action";
+                if (Model.categoryId == item.id)
+                {
+                    css += " active";
+                }
+                <a type="button" class="@css" href="/reader/listofproduct/@item.id">@item.name</a>
+            }
+            <a type="button" class="list-group-item list-group-item-action" href="/reader/listofproduct/0">Hepsi</a>
+        </div>
+    </div>
+    <div class="row mt-2">
+
+        <div class="col-sm-12">
+            <div class="table-responsive">
+
+                <table id="6column" class="table align-middle table-hover table-sm">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>Kategori</th>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>Seri Numarası</th>
+                            <th>Envanter Numarası</th>
+                            <th>Detay</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model.product)
+                            {
+                                string cls = "arama";
+
+                                if (item.serviceId != null)
+                                {
+                                    cls += " table-danger";
+                                }
+                                @if (item.personelId == null && item.commonId == null)
+                                {
+                                    <tr class="@cls">
+                                        @if (item.Product.categoryId != null)
+                                        {
+                                            <td>@item.Product.Category.name</td>
+
+                                        }
+                                        @if (item.Product.categoryId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.brandId != null)
+                                        {
+                                            <td>@item.Product.Brand.name</td>
+                                        }
+                                        @if (item.Product.brandId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.modelId != null)
+                                        {
+                                            <td>@item.Product.Model.name</td>
+
+                                        }
+                                        @if (item.Product.modelId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        <td>@item.Product.serialNo</td>
+                                        <td>@item.Product.inventoryNo</td>
+
+                                        <td>
+                                            <a class="btn btn-secondary" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
+                                        </td>
+
+
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="~/js/reader/6column.js" type="text/javascript"></script>

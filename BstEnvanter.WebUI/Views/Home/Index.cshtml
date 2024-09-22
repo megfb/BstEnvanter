@@ -1,0 +1,214 @@
+﻿@model BstEnvanter.WebUI.Models.IndexViewModel
+@{
+    string rol = "editor";
+    if (User.IsInRole("admin") || User.IsInRole("editor"))
+    {
+        Layout = "~/Views/_Layout.cshtml";
+
+    }
+    else
+    {
+        rol = "reader";
+        Layout = "~/Views/_readerLayout.cshtml";
+    }
+    ViewData["Title"] = "Dashboard";
+    //Layout = null;
+    //<link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    //<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    //<link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
+    //<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.css" />
+    //<link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.css">
+    //<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    //<script src="~/lib/jquery/jquery.min.js"></script>
+    //<script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" />
+
+}
+
+<div>
+    <div class="row">
+
+        <div class="dashboard col-md-4 border shadow rounded-3">
+            @{
+                int counter = Model.status.Count();
+                if (counter > 0)
+                {
+                    int depo = Model.status.Where(x => (x.commonId == null && x.personelId == null)).Count() * 100 / counter;
+                    int personel = Model.status.Where(x => (x.personelId != null)).Count() * 100 / counter;
+                    int common = Model.status.Where(x => (x.commonId != null)).Count() * 100 / counter;
+                    int depoPersonel = depo + personel;
+                    int depoPersonelCommon = depoPersonel + common;
+                    <div class="dashboardParent mx-auto col-md-12 mt-5" style="  background: conic-gradient( #0275d8 0.00% @depo%, #f0ad4e @depo% @depoPersonel%,#5bc0de @depoPersonel% @depoPersonelCommon%);">
+                        <div class="rounded-circle bg-light parent mx-auto">
+                            <h4 class="inf text-center">@Model.status.Count() Ürün</h4>
+                        </div>
+
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col-md-4">
+                            <h4 class="text-primary">Depo</h4>
+                            <h4><a class="text-primary" asp-controller="@rol" asp-action="listofproduct">@Model.status.Where(x => (x.commonId ==null&& x.personelId ==null)).Count()</a></h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-warning">Personel </h4>
+                            <h4><a class="text-warning" asp-controller="@rol" asp-action="listofproductatpersonel">@Model.status.Where(x => (x.personelId !=null)).Count()</a></h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-info">Ortak</h4>
+                            <h4><a class="text-info" asp-controller="@rol" asp-action="listofproductatcommon">@Model.status.Where(x => (x.commonId !=null)).Count()</a></h4>
+                        </div>
+                        <div class="mt-3">
+                            <h5>Serviste kaydı bulunan ürün sayısı @Model.status.Where(x => x.serviceId !=null).Count(); </h5>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+        <div class="col-md-6">
+            <div class="row mx-auto">
+                @foreach (var item in Model.campus)
+                {
+                    if (Model.status.Where(x => x.campusId == item.id).Count() > 0)
+                    {
+                        int counterCampus = Model.status.Where(x => x.campusId == item.id).Count();
+                        int depoCampus = (Model.status.Where(x => (x.commonId == null && x.personelId == null && x.campusId == item.id)).Count() * 100) / counterCampus;
+                        int personelCampus = (Model.status.Where(x => (x.personelId != null && x.campusId == item.id)).Count() * 100) / counterCampus;
+                        int commonCampus = Model.status.Where(x => (x.commonId != null && x.campusId == item.id)).Count() * 100 / counterCampus;
+                        int depoPersonelCampus = depoCampus + personelCampus;
+                        int depoPersonelCommonCampus = depoPersonelCampus + commonCampus;
+
+                        <div class="col-md-6 mb-3 dashboardCampus mx-auto ">
+                            <div class="col-md-12 border shadow rounded-3 pt-3 pe-1">
+                                <h5 class="text-dark text-end pe-3">@item.name</h5>
+                                <div class="col-md-12 dashboardCampusParent  mx-auto text-center" style="background: conic-gradient( #0275d8 0.00% @depoCampus%, #f0ad4e @depoCampus% @depoPersonelCampus%,#5bc0de @depoPersonelCampus% @depoPersonelCommonCampus%);">
+                                </div>
+                                <div class="row mt-1 text-center">
+                                    <div class="col-md-4">
+                                        <h6 class="text-primary">Depo</h6>
+                                        <h6><a class="text-primary" asp-controller="@rol" asp-action="detailcampus" asp-route-id="@item.id">@Model.status.Where(x => (x.commonId ==null&& x.personelId ==null && x.campusId == item.id)).Count()</a></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-warning">Personel </h6>
+                                        <h6><a class="text-warning" asp-controller="@rol" asp-action="detailcampusatpersonel" asp-route-id="@item.id">@Model.status.Where(x => (x.personelId !=null && x.campusId == item.id)).Count()</a></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-info">Ortak</h6>
+                                        <h6><a class="text-info" asp-controller="@rol" asp-action="detailcampusatpersonel" asp-route-id="@item.id">@Model.status.Where(x => (x.commonId !=null && x.campusId == item.id)).Count()</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                }
+
+            </div>
+        </div>
+        <div class="col-md-2">
+
+            @{
+                var list = Model.status.TakeLast(5).ToList();
+
+                <div class="row">
+                    <ul class="list-group ">
+                        <li class="list-group-item active">Son Eklenenler</li>
+
+                        @for (int i = 0; i < list.Count; i++)
+                        {
+                            <a asp-controller="@rol" asp-action="detailproduct" asp-route-id="@list[i].id" class="list-group-item list-group-item-action ">@list[i].Product.Category.name - @list[i].Campus.name</a>
+                        }
+                    </ul>
+                </div>
+                var listS = Model.status.Where(x => x.serviceId != null).TakeLast(5).ToList();
+                <div class="row mt-3">
+                    <ul class="list-group ">
+                        <li class="list-group-item active">Servis Listesi</li>
+
+                        @for (int i = 0; i < listS.Count; i++)
+                        {
+                            <a asp-controller="@rol" asp-action="detailproduct" asp-route-id="@listS[i].id" class="list-group-item list-group-item-action ">@listS[i].Product.Category.name - @listS[i].Campus.name</a>
+                        }
+                    </ul>
+                </div>
+
+            }
+        </div>
+    </div>
+    <hr />
+    @* <div class="row">
+    <div class="col-lg-6 col-md-12">
+    <div class=" rounded-3">
+    <h1 class="text-primary">Kategori istatistikleri</h1>
+    @foreach (var item in Model.categories)
+    {
+    <div class="row mb-3">
+    <div class="col-lg-2 col-md-2 col-sm-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center bg-primary text-dark rounded-3 border border-primary" style="min-height:50px">
+    <h6>@item.name</h6>
+    <h4>@Model.status.Where(x => (x.Product.categoryId == item.id)).Count()</h4>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-1">
+    <div class="col-md-12 text-center bg-dark text-primary rounded-3 border border-dark" style="min-height:50px">
+    <h6>Depo</h6>
+    <h4>@Model.status.Where(x => (x.Product.categoryId == item.id && x.commonId ==null && x.personelId == null)).Count()</h4>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-1">
+    <div class="col-md-12 text-center bg-dark text-primary rounded-3 border border-dark" style="min-height:50px">
+    <h6>Personel</h6>
+    <h4>@Model.status.Where(x => (x.Product.categoryId == item.id &&  x.personelId != null)).Count()</h4>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-1">
+    <div class="col-md-12 text-center bg-dark text-primary rounded-3 border border-dark" style="min-height:50px">
+    <h6>Ortak</h6>
+    <h4>@Model.status.Where(x => (x.Product.categoryId == item.id &&  x.commonId != null)).Count()</h4>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-1">
+    <div class="col-md-12 text-center bg-dark text-primary rounded-3 border border-dark" style="min-height:50px">
+    <h6>Servis</h6>
+    <h4>@Model.status.Where(x => (x.Product.categoryId == item.id &&  x.serviceId != null)).Count()</h4>
+    </div>
+    </div>
+    </div>
+    }
+    </div>
+    </div>
+    </div>*@
+    <div class="row mx-auto">
+        @foreach (var item in Model.categories)
+        {
+            <div class="card shadow mx-auto" style="width: 18rem;">
+                <div class="card-body mx-auto">
+                    <h5 class="card-title text-primary">@item.name</h5>
+                    <h6 class="card-subtitle text-dark mb-2 mt-2 border-bottom border-primary">@Model.status.Where(x => (x.Product.categoryId == item.id)).Count() Ürün</h6>
+                    <div class="row text-dark">
+                        <div class="col-md-6">
+                            <a class="card-text text-primary" asp-controller="@rol" asp-action="listofproduct" asp-route-id="@item.id">Depo @Model.status.Where(x => (x.Product.categoryId == item.id && x.commonId ==null && x.personelId == null)).Count()</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="card-text text-warning" asp-controller="@rol" asp-action="listofproduct" asp-route-id="@item.id">Personel @Model.status.Where(x => (x.Product.categoryId == item.id &&  x.personelId != null)).Count()</a>
+
+                        </div>
+                        <div class="col-md-6">
+                            <a class="card-text text-info" asp-controller="@rol" asp-action="listofproduct" asp-route-id="@item.id">Ortak @Model.status.Where(x => (x.Product.categoryId == item.id &&  x.commonId != null)).Count()</a>
+
+                        </div>
+                        <div class="col-md-6">
+                            <a class="card-text text-black-50" asp-controller="@rol" asp-action="listofproductatservice" asp-route-id="@item.id">Servis @Model.status.Where(x => (x.Product.categoryId == item.id &&  x.serviceId != null)).Count()</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>

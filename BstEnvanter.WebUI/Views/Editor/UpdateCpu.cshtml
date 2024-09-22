@@ -1,0 +1,27 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateCpuViewModel
+@{
+    ViewData["Title"] = "İşlemci Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">İşlemci Güncelle</h1>
+        <hr />
+    </div>
+    <form asp-action="updatecpu" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
+            <div class="col-md-10">
+                <input asp-for="cpu.name" class="form-control" type="text" placeholder="@Model.cpu.name" />
+                <span class="text-danger" asp-validation-for="cpu.name"></span>
+            </div>
+        </div>
+        <div class="form-group text-end mt-3">
+            <input type="hidden" asp-for="cpu.id" />
+            <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofcpu">Geri</a>
+        </div>
+    </form>
+</div>
+

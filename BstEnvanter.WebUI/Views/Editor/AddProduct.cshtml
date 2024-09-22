@@ -1,0 +1,161 @@
+﻿@model BstEnvanter.WebUI.Models.AddProductViewModel
+@{
+    ViewData["Title"] = "Yeni Ürün";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Ürün Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addproduct" class="col-md-8 p-3 mb-3 border rounded" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3 row">
+            <label for="inputImg" class="col-md-2 col-form-label">Resim Bilgileri</label>
+            <div class="col-md-10">
+                <input id="inputImg" asp-for="img" type="file" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputCategory" class="col-md-2 col-form-label">Kategori</label>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="status.Product.categoryId" data-size="5" id="inputCategory" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.category)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a asp-action="addcategory">yeni bir kategori ekle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputBrand" class="col-md-2 col-form-label">Marka</label>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="status.Product.brandId" data-size="5" id="inputBrand" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    @foreach (var item in Model.brand)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addbrand">yeni bir marka ekle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label for="inputModel" class="col-md-2 col-form-label">Model</label>
+            <div class="col-md-10 search_select_box">
+                <select id="inputModel" asp-for="status.Product.modelId" data-size="5" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    @foreach (var item in Model.model)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addmodel">yeni bir model ekle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputName">Ürün Adı</label>
+            <div class="col-md-10">
+                <input id="inputName" asp-for="status.Product.name" class="form-control" type="text" placeholder="Ürün Adı" />
+                <span class="text-danger" asp-validation-for="status.Product.name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputSerialNo">Seri Numarası</label>
+            <div class="col-md-10">
+                <input asp-for="status.Product.serialNo" class="form-control" type="text" placeholder="Seri Numara" />
+                <span class="text-danger" asp-validation-for="status.Product.serialNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputInventoryNo">Envanter Numarası</label>
+            <div class="col-md-10">
+                <input id="inputInventoryNo" asp-for="status.Product.inventoryNo" class="form-control" type="text" placeholder="Envanter Numarası" />
+                <span class="text-danger" asp-validation-for="status.Product.inventoryNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
+            <div class="col-md-10 search_select_box">
+                <select id="inputCpu" asp-for="status.Product.cpuId" data-size="5" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    <option value="@null">Seçim Yapılmadı</option>
+                    @foreach (var item in Model.cpu)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addcpu">yeni bir işlemci ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
+            <div class="col-md-10 search_select_box">
+                <select id="inputGpu" asp-for="status.Product.gpuId" data-size="5" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    <option value="@null">Seçim Yapılmadı</option>
+                    @foreach (var item in Model.gpu)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addgpu">yeni bir ekran kartı ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
+            <div class="col-md-10 search_select_box">
+                <select id="inputRam" asp-for="status.Product.ramId" data-size="5" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    <option value="@null">Seçim Yapılmadı</option>
+                    @foreach (var item in Model.ram)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addram">yeni bir ram ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputHdd" class="col-md-2 col-form-label">Sabit Disk</label>
+            <div class="col-md-10  search_select_box">
+                <select id="inputHdd" asp-for="status.Product.hardDriveId" data-size="5" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" )">
+                    <option value="@null">Seçim Yapılmadı</option>
+                    @foreach (var item in Model.hardDrive)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addharddrive">yeni bir sabit disk ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputCampus">Yerleşke</label>
+            <select asp-for="status.campusId" class="form-select mt-2 form-control" id="inputCampus" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
+        </div>
+        <div class="col-12 pt-3">
+            <label for="inputDefinition" class="form-label">Açıklama</label>
+            <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="Açıklama" /></textarea>
+            <span class="text-danger" asp-validation-for="status.definition"></span>
+        </div>
+        <div class="mt-1 text-end">
+            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+            @*<input type="hidden" asp-for="status.bstId" value="@" />*@
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofproduct" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

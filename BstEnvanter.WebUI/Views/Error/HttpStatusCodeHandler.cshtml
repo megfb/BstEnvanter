@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Geçersiz Deneme</title>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <img class="img-fluid rounded-pill" src="~/img/AccessDenied.jpg" />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <p class="h3 text-center" style=" font-family: 'Montserrat', sans-serif; line-height: 1.9; font-weight: 700">Geçersiz bir sayfaya giriş yapmaya çalıştınız!</p>
+        </div>
+        <div class="div mt-3 text-center">
+            <a onClick="history.go(-1); return false;" class="btn btn-info rounded-pill col-md-3">Geri Dön</a>
+        </div>
+    </div>
+</body>
+</html>

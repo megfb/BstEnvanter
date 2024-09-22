@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.js"></script>
+    <script src="~/lib/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="https://kit.fontawesome.com/6a51b35a87.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+
+            <div class="col-12 col-md-3 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
+
+                <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+                    <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="d-none d-sm-inline">BST Envanter</span>
+                    </a>
+                    <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                        <li>
+                            <a asp-controller="reader" asp-action="listofproduct" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-shop-window"></i><span class="ms-1 d-none d-sm-inline">Ürünler</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fs-5 bi-motherboard"></i><span class="ms-1 d-none d-sm-inline">Donanım</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofcpu" class="ms-1 nav-link px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-microchip me-1"></i>İşlemci
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofgpu" class="ms-1 nav-link px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-camera-retro me-1"></i>Ekran Kartı
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofram" class="ms-1 nav-link px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-memory me-1"></i>Ram
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofharddrive" class="ms-1 nav-link px-sm-0 px-2">
+                                        <i class="fs-5 fa-regular fa-floppy-disk me-1"></i>Sabit Disk
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="reader" asp-action="listofcategory" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-command"></i><span class="ms-1 d-none d-sm-inline">Kategoriler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="reader" asp-action="listofbrand" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 fa-solid fa-globe"></i><span class="ms-1 d-none d-sm-inline">Markalar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="reader" asp-action="listofmodel" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 fa-solid fa-meteor"></i></i><span class="ms-1 d-none d-sm-inline">Modeller</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fs-5 fa-solid fa-school"></i><span class="ms-1 d-none d-sm-inline">Yerleşkeler</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofcampus" class="nav-link ms-1 px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-school me-1"></i>Yerleşkeler
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofclocation" class="nav-link ms-1 px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-location-crosshairs me-1"></i>Lokasyonlar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="reader" asp-action="listofdepartment" class="nav-link ms-1 px-sm-0 px-2">
+                                        <i class="fs-5 fa-solid fa-fax me-1"></i>Departmanlar
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="reader" asp-action="listofpersonel" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 fa-solid fa-users"></i><span class="ms-1 d-none d-sm-inline">Personeller</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                            <a href="#" class=" text-primary d-flex align-items-center text-primary text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fs-5 fa-solid fa-gear"></i>
+                                <span class="d-none d-sm-inline mx-1">Ayarlar</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item text-primary" asp-action="profile" asp-controller="user"><i class="fs-5 fa-regular fa-user me-1"></i>Profil</a></li>
+                                <li>
+                                    <a asp-controller="user" asp-action="ChangePassword" class="dropdown-item text-primary">
+                                        <i class="fs-5 me-1 fa-solid fa-lock"></i>Şifre Değiştir
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a asp-controller="account" asp-action="logout" class="dropdown-item text-primary">
+                                        <i class="fs-5 me-1 fa-solid fa-right-from-bracket"></i>Oturumu Kapat
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col d-flex flex-column col-lg-10 col-md-9 h-sm-100">
+                <div class="text-center row text-white" style="min-height:40px;background-color:#001E4E">
+                    <h6 class="pt-2">
+                        @HttpContextAccessor.HttpContext.Session.GetString("fullName")
+
+                    </h6>
+
+                </div>
+                <div class="col pt-4">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Yeni Bildirim:</strong> @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @if (TempData["Alert"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Hata:</strong> @TempData["Alert"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @RenderBody()
+                </div>
+                <a asp-controller="home" asp-action="index" style="position: fixed;bottom: 3%;right: 2%;" class="btn btn-warning rounded-circle testbuton">
+                    <i class="fs-5 bi bi-house-door-fill"></i>
+                </a>
+                <footer class="text-center row text-white border-top mt-3" style="background-color:#001E4E">
+                    <div class="text-center row">
+
+                        <div class="card-header m-3">
+                            <span class="d-inline-block">İstanbul Kültür Üniversitesi - Bilgi Sistem Teknolojileri Daire Başkanlığı</span>
+                            <span class="d-inline-block">
+                                <a class="btn hover btn-link btn-floating  btn-sm"
+                                   href="https://tr-tr.facebook.com/IKUEDU/" target="_blank"
+                                   role="button"
+                                   data-mdb-ripple-color="dark" style="background: #3B5998;color: white;">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </span>
+                            <span class="d-inline-block float-right">
+                                <a class="btn hover btn-link btn-floating  btn-sm"
+                                   href="https://twitter.com/IKUedu" target="_blank"
+                                   role="button"
+                                   data-mdb-ripple-color="dark" style="  background: #55ACEE;color: white;">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </span>
+                            <span class="d-inline-block float-right">
+                                <a class="btn hover btn-link btn-floating  btn-sm"
+                                   href="https://tr.pinterest.com/ikuedu/" target="_blank"
+                                   role="button"
+                                   data-mdb-ripple-color="dark" style="  background: #cb2027;color: white;">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                            </span>
+                            <span class="d-inline-block float-right">
+                                <a class="btn hover btn-link btn-floating btn-sm"
+                                   href="https://www.instagram.com/ikuedu/" target="_blank"
+                                   role="button"
+                                   data-mdb-ripple-color="dark" style="  background: #F56040;color: white;">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </span>
+                            <span class="d-inline-block float-right">
+                                <a class="btn hover btn-link btn-floating btn-sm"
+                                   href="https://tr.linkedin.com/school/ikuedu/" target="_blank"
+                                   role="button"
+                                   data-mdb-ripple-color="dark" style="  background: #007bb5;color: white;">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </span>
+
+
+                        </div>
+                    </div>
+                    <!-- Copyright -->
+                    <!-- Copyright -->
+                </footer>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/js/select/select.js" type="text/javascript"></script>

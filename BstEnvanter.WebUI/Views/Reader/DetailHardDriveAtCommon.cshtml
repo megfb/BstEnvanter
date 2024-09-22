@@ -1,0 +1,99 @@
+﻿@model BstEnvanter.WebUI.Models.DetailHardDriveViewModel
+@{
+    ViewData["Title"] = "DetailHardDriveAtCommon";
+    Layout = "~/Views/_readerLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">@Model.hardDrive.name - Ortak Ürün Listesi<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofharddriveatcommon" asp-route-exportName="Hdd_Ortak_Ürün_Listesi" asp-route-id="@Model.hardDrive.id"><i class="fs-1 bi bi-printer"></i></a></h1>
+        <hr />
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a type="button" asp-action="detailharddrive" asp-route-id="@Model.hardDrive.id" class="btn btn-secondary">Ürün</a>
+        <a type="button" asp-action="detailharddriveatpersonel" asp-route-id="@Model.hardDrive.id" class="btn btn-secondary">Personel</a>
+        <a type="button" asp-action="detailharddriveatcommon" asp-route-id="@Model.hardDrive.id" class="btn btn-secondary">Ortak</a>
+    </div>
+    <div class="table-responsive pt-3">
+        <table id="8column" class="table align-middle table-hover table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Seri Numarası</th>
+                    <th scope="col">Envanter Numarası</th>
+                    <th scope="col">Departman</th>
+                    <th scope="col">Lokasyon</th>
+                    <th scope="col">Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.status)
+                    {
+                        @if (item.personelId == null && item.commonId != null)
+                        {
+                            <tr>
+
+                                @if (item.Product.categoryId != null)
+                                {
+                                    <td>@item.Product.Category.name</td>
+
+                                }
+                                @if (item.Product.categoryId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Product.brandId != null)
+                                {
+                                    <td>@item.Product.Brand.name</td>
+                                }
+                                @if (item.Product.brandId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Product.modelId != null)
+                                {
+                                    <td>@item.Product.Model.name</td>
+
+                                }
+                                @if (item.Product.modelId == null)
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">@item.Product.serialNo</td>
+                                <td scope="col">@item.Product.inventoryNo</td>
+                                @if (item.Common.departmentId != null)
+                                {
+                                    <td scope="col">@item.Common.department.name</td>
+
+                                }
+                                @if (item.Common.departmentId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Common.cLocationId != null)
+                                {
+                                    <td scope="col">@item.Common.CLocation.name</td>
+
+                                }
+                                @if (item.Common.cLocationId == null)
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">
+                                    <a class="btn btn-secondary" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="text-end my-3">
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="listofharddrive">Geri</a>
+        </div>
+    </div>
+</div>
+<script src="~/js/reader/8column.js" type="text/javascript"></script>

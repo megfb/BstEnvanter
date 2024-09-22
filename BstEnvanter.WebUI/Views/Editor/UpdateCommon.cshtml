@@ -1,0 +1,41 @@
+﻿@model BstEnvanter.WebUI.Models.AddCommonViewModel
+@{
+    ViewData["Title"] = "Ortak Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="containter-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Ortak Güncelle</h1>
+        <hr />
+    </div>
+    <form class="col-md-8" method="post" asp-action="addproducttocommon">
+        <div class="form-group">
+            <label for="inputDepartment" class="form-label">Departman</label>
+            <div class=" search_select_box">
+                <select asp-for="common.departmentId" data-size="5" id="inputDepartment" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.department)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group pt-3">
+            <label for="inputLocation" class="form-label">Lokasyon</label>
+            <div class="search_select_box">
+                <select asp-for="common.cLocationId" data-size="5" id="inputLocation" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.clocation)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn text-white col-md-2" style="background-color:#90A4AE" asp-route-id="@Model.id">Güncelle</button>
+            <a asp-action="detailproduct" asp-route-id="@Model.id" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

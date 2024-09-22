@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.AddBrandViewModel
+@{
+    ViewData["Title"] = "Yeni Marka";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Marka Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addbrand" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputBrand" class="col-md-2 col-form-label">Marka</label>
+            <div class="col-md-10">
+                <input asp-for="brand.name" id="inputBrand" class="form-control" type="text" placeholder="Marka" />
+            <span class="text-danger" asp-validation-for="brand.name"></span>
+        </div>
+        </div>
+        <div class="mt-3 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofbrand" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

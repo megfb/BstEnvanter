@@ -1,0 +1,58 @@
+﻿@model BstEnvanter.WebUI.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body class="" style="height:100vh;background-image:url('../img/bg.jpg');background-position: center center;background-repeat: no-repeat;background-size:cover;">
+
+    <div class="container-fluid border border-light">
+
+        <div class="row col-md-8 mx-auto " style="margin-top:15vh ">
+            <form asp-controller="account" asp-action="login" method="post" class=" mx-auto col-md-6 pt-5 pb-5 ps-5 pe-5">
+                @if (TempData["Alert"] != null)
+                {
+                    <div class="alert  text-center mx-auto alert-danger alert-dismissible fade show fixed-top" role="alert">
+                        <strong class="text-center">Hata:</strong> @TempData["Alert"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <div class="mx-auto col-md-4 text-center">
+                    <img class="img-fluid" style="max-height:200px" src="../img/logo.png" />
+                </div>
+                <div class="mx-auto ">
+                    <div class="form-group mt-3">
+                        <input asp-for="EMail" class="form-control" type="text" placeholder="E-Mail" />
+                        <span class="text-danger fw-bold" asp-validation-for="EMail"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input asp-for="Password" class="form-control" type="password" placeholder="Parola" />
+                        <span class="text-danger fw-bold" asp-validation-for="Password"></span>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 col-md-12">Giriş</button>
+
+                </div>
+                <div class="mx-auto mt-5 col-md-4 text-center">
+                    <img class="img-fluid" style="max-height:200px" src="../img/iku.png" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

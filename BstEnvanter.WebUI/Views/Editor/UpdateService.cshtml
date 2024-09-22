@@ -1,0 +1,837 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateServiceViewModel
+@{
+    ViewData["Title"] = "Servis Kaydını Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Servis Kaydını Güncelle</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="row col-md-12">
+            @if (Model.status.personelId == null && Model.status.commonId == null)
+            {
+                <div class=" border col-md-6 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Ürün Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Ad:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Kategori:</td>
+                                @if (Model.status.Product.categoryId != null)
+                                {
+                                    <td>@Model.status.Product.Category.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Marka:</td>
+                                @if (Model.status.Product.brandId != null)
+                                {
+                                    <td>@Model.status.Product.Brand.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                @if (Model.status.Product.modelId != null)
+                                {
+                                    <td>@Model.status.Product.Model.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Seri Numara:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Envanter Numarası:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>İşlemci:</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td>Ekran Kartı:</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
+                            </tr>
+                            <tr>
+
+                                <td>Ram:</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Sabit Disk:</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-6 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Uzman Detayları</h3>
+                    </div>
+                    @{
+                        if (Model.user != null)
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        <td>@Model.user.name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        <td>@Model.user.surname</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        <td>@Model.user.age</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        <td>@Model.user.gender</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        <td>@Model.user.department</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        <td>@Model.user.roomNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-Mail:</td>
+                                        <td>@Model.user.Email</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        @*<td>@Model.status.Personel.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        @*<td>@Model.status.Personel.surname</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        @*<td>@Model.status.Personel.age</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        @*<td>@Model.status.Personel.Sex.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        @*<td>@Model.status.Personel.Department.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        @*<td>@Model.status.Personel.roomNo</td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    }
+                </div>
+                <div class="col-md-12 border border-rounded  rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Durum Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Definition:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Campus:</td>
+                                @if (Model.status.campusId != null)
+                                {
+                                    <td>@Model.status.Campus.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Date of Update:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Bst Id:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-12 ">
+                        <div class="row bg-primary">
+                            <h3 class="pt-3 text-light">Servis Detayları</h3>
+                        </div>
+
+                        <form asp-action="updateservice" class="pt-3" method="post">
+
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label" for="inputCompany">Kurum</label>
+                                <div class="col-md-10">
+                                    <input id="inputCompany" asp-for="status.Service.company" class="form-control" type="text" placeholder="@Model.status.Service.company" />
+                                    <span class="text-danger" asp-validation-for="status.Service.company"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row pt-4">
+                                <label class="col-md-2 col-form-label" for="inputSpecialist">Uzman</label>
+                                <div class="col-md-10">
+                                    <input id="inputSpecialist" asp-for="status.Service.specialist" class="form-control" type="text" placeholder="@Model.status.Service.specialist" />
+                                    <span class="text-danger" asp-validation-for="status.Service.specialist"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row pt-4">
+                                <label class="col-md-2 col-form-label" for="inputNumber">Numara</label>
+                                <div class="col-md-10">
+                                    <input id="inputNumber" asp-for="status.Service.number" class="form-control" type="number" placeholder="@Model.status.Service.number" />
+                                    <span class="text-danger" asp-validation-for="status.Service.number"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row pt-4">
+                                <label for="inputAdress" class="col-md-2 col-form-label">Adres</label>
+                                <div class="col-md-10">
+                                    <textarea id="inputAdress" asp-for="status.Service.adress" class="form-control" placeholder="@Model.status.Service.adress"> </textarea>
+                                    <span class="text-danger" asp-validation-for="status.Service.adress"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group row pt-4">
+                                <label for="inputIssue" class="col-md-2 col-form-label">Sorun</label>
+                                <div class="col-md-10">
+                                    <textarea id="inputIssue" asp-for="status.Service.issue" class="form-control" placeholder="@Model.status.Service.issue"> </textarea>
+                                    <span class="text-danger" asp-validation-for="status.Service.issue"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group row pt-4">
+                                <label for="inputDateTimeStart" class="col-md-2 col-form-label">Başlangıç Tarihi</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="date" id="inputDateTimeStart" asp-for="status.Service.dateOfStart" placeholder="@Model.status.Service.dateOfStart">
+                                    <span class="text-danger" asp-validation-for="status.Service.dateOfStart"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row pt-4">
+                                <label for="inputDateTimeEnd" class="col-md-2 col-form-label">Bitiş Tarihi</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="date" id="inputDateTimeEnd" asp-for="status.Service.dateOfEnd" placeholder="@Model.status.Service.dateOfEnd">
+                                    <span class="text-danger" asp-validation-for="status.Service.dateOfEnd"></span>
+                                </div>
+                            </div>
+                            <div class="mt-1 text-end">
+                                <input type="hidden" asp-for="status.id" />
+                                <input type="hidden" asp-for="status.Service.id" />
+                                <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
+                                <input type="hidden" asp-for="status.campusId" value="@Model.status.campusId" />
+                                <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+                                <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
+                                <input type="hidden" asp-for="status.bstId" value="ID" />
+                                <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+                                <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            }
+            @if (Model.status.personelId != null && Model.status.commonId == null)
+            {
+                <div class=" border col-md-4 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Ürün Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Ad:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Kategori:</td>
+                                @if (Model.status.Product.categoryId != null)
+                                {
+                                    <td>@Model.status.Product.Category.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Marka:</td>
+                                @if (Model.status.Product.brandId != null)
+                                {
+                                    <td>@Model.status.Product.Brand.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                @if (Model.status.Product.modelId != null)
+                                {
+                                    <td>@Model.status.Product.Model.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Seri Numara:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Envanter Numarası:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>İşlemci:</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td>Ekran Kartı:</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
+                            </tr>
+                            <tr>
+
+                                <td>Ram:</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Sabit Disk:</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Personel Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Ad:</td>
+                                <td>@Model.status.Personel.name</td>
+                            </tr>
+                            <tr>
+                                <td>Soyad:</td>
+                                <td>@Model.status.Personel.surname</td>
+                            </tr>
+                            <tr>
+                                <td>Yaş:</td>
+                                <td>@Model.status.Personel.age</td>
+                            </tr>
+                            <tr>
+                                <td>Cinsiyet:</td>
+                                @if (Model.status.Personel.sexId != null)
+                                {
+                                    <td>@Model.status.Personel.Sex.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Departman:</td>
+                                @if (Model.status.Personel.departmentId != null)
+                                {
+                                    <td>@Model.status.Personel.Department.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>E-Mail:</td>
+                                <td>@Model.status.Personel.eMail</td>
+                            </tr>
+                            <tr>
+                                <td>Lokasyon:</td>
+                                @if (Model.status.Personel.cLocationId != null)
+                                {
+                                    <td>@Model.status.Personel.CLocation.name</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Uzman Detayları</h3>
+                    </div>
+                    @{
+                        if (Model.user != null)
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        <td>@Model.user.name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        <td>@Model.user.surname</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        <td>@Model.user.age</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        <td>@Model.user.gender</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        <td>@Model.user.department</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        <td>@Model.user.roomNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-Mail:</td>
+                                        <td>@Model.user.Email</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        @*<td>@Model.status.Personel.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        @*<td>@Model.status.Personel.surname</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        @*<td>@Model.status.Personel.age</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        @*<td>@Model.status.Personel.Sex.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        @*<td>@Model.status.Personel.Department.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        @*<td>@Model.status.Personel.roomNo</td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    }
+                </div>
+                <div class="col-md-12 border border-rounded  rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Durum Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Açıklama:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Yerleşke:</td>
+                                @if (Model.status.campusId != null)
+                                {
+                                    <td>@Model.status.Campus.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Son Güncelleştirme Tarihi:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Kullanıcı Kimliği:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-md-12 ">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Servis Detayları</h3>
+                    </div>
+
+                    <form asp-action="updateservice" class="pt-3" method="post">
+
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="inputCompany">Kurum</label>
+                            <div class="col-md-10">
+                                <input id="inputCompany" asp-for="status.Service.company" class="form-control" type="text" placeholder="@Model.status.Service.company" />
+                                <span class="text-danger fw-bold" asp-validation-for="status.Service.company"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row pt-4">
+                            <label class="col-md-2 col-form-label" for="inputSpecialist">Uzman</label>
+                            <div class="col-md-10">
+                                <input id="inputSpecialist" asp-for="status.Service.specialist" class="form-control" type="text" placeholder="@Model.status.Service.specialist" />
+                                <span asp-validation-for="status.Service.specialist"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label class="col-md-2 col-form-label" for="inputNumber">Numara</label>
+                            <div class="col-md-10">
+                                <input id="inputNumber" asp-for="status.Service.number" class="form-control" type="number" placeholder="@Model.status.Service.number" />
+                                <span asp-validation-for="status.Service.number"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputAdress" class="col-md-2 col-form-label">Adres</label>
+                            <div class="col-md-10">
+                                <textarea id="inputAdress" asp-for="status.Service.adress" class="form-control" placeholder="@Model.status.Service.adress"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputIssue" class="col-md-2 col-form-label">Sorun</label>
+                            <div class="col-md-10">
+                                <textarea id="inputIssue" asp-for="status.Service.issue" class="form-control" placeholder="@Model.status.Service.issue"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputDateTimeStart" class="col-md-2 col-form-label">Başlangıç Tarihi</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="date" id="inputDateTimeStart" asp-for="status.Service.dateOfStart" placeholder="@Model.status.Service.dateOfStart">
+                                <span asp-validation-for="status.Service.dateOfStart"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputDateTimeEnd" class="col-md-2 col-form-label">Bitiş Tarihi</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="date" id="inputDateTimeEnd" asp-for="status.Service.dateOfEnd" placeholder="@Model.status.Service.dateOfEnd">
+                                <span asp-validation-for="status.Service.dateOfEnd"></span>
+                            </div>
+                        </div>
+                        <div class="mt-1 text-end">
+                            <input type="hidden" asp-for="status.id" />
+                            <input type="hidden" asp-for="status.Service.id" />
+                            <input type="hidden" asp-for="status.personelId" value="@Model.status.personelId" />
+                            <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
+                            <input type="hidden" asp-for="status.campusId" value="@Model.status.campusId" />
+                            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+                            <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
+                            <input type="hidden" asp-for="status.bstId" value="ID" />
+                            <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+                            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            }
+            @if (Model.status.commonId != null)
+            {
+                <div class=" border col-md-4 rounded">
+
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Ürün Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Ad:</td>
+                                <td>@Model.status.Product.name</td>
+                            </tr>
+                            <tr>
+                                <td>Kategori:</td>
+                                @if (Model.status.Product.categoryId != null)
+                                {
+                                    <td>@Model.status.Product.Category.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Marka:</td>
+                                @if (Model.status.Product.brandId != null)
+                                {
+                                    <td>@Model.status.Product.Brand.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                @if (Model.status.Product.modelId != null)
+                                {
+                                    <td>@Model.status.Product.Model.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Seri Numara:</td>
+                                <td>@Model.status.Product.serialNo</td>
+                            </tr>
+                            <tr>
+                                <td>Envanter Numarası:</td>
+                                <td>@Model.status.Product.inventoryNo</td>
+                            </tr>
+                            <tr>
+                                <td>İşlemci:</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td>Ekran Kartı:</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
+                            </tr>
+                            <tr>
+
+                                <td>Ram:</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Sabit Disk:</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Ortak Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Departman:</td>
+                                @if (Model.status.Common.departmentId != null)
+                                {
+                                    <td>@Model.status.Common.department.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Lokasyon:</td>
+                                @if (Model.status.Common.cLocationId != null)
+                                {
+                                    <td>@Model.status.Common.CLocation.name</td>
+                                }
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border border-rounded col-md-4 rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Uzman Detayları</h3>
+                    </div>
+                    @{
+                        if (Model.user != null)
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        <td>@Model.user.name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        <td>@Model.user.surname</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        <td>@Model.user.age</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        <td>@Model.user.gender</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        <td>@Model.user.department</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        <td>@Model.user.roomNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-Mail:</td>
+                                        <td>@Model.user.Email</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Ad:</td>
+                                        @*<td>@Model.status.Personel.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Soyad:</td>
+                                        @*<td>@Model.status.Personel.surname</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Yaş:</td>
+                                        @*<td>@Model.status.Personel.age</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Cinsiyet:</td>
+                                        @*<td>@Model.status.Personel.Sex.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Departman:</td>
+                                        @*<td>@Model.status.Personel.Department.name</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasyon:</td>
+                                        @*<td>@Model.status.Personel.roomNo</td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    }
+                </div>
+                <div class="col-md-12 border border-rounded rounded">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Durum Detayları</h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Açıklama:</td>
+                                <td>@Model.status.definition</td>
+                            </tr>
+                            <tr>
+                                <td>Yerleşke:</td>
+                                @if (Model.status.campusId != null)
+                                {
+                                    <td>@Model.status.Campus.name</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td>Son Güncelleştirme Tarihi:</td>
+                                <td>@Model.status.dateOfUpdate</td>
+                            </tr>
+                            <tr>
+                                <td>Kullanıcı Kimliği:</td>
+                                <td>@Model.status.bstId</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="row bg-primary">
+                        <h3 class="pt-3 text-light">Servis Detayları</h3>
+                    </div>
+
+                    <form asp-action="updateservice" class="pt-3" method="post">
+
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="inputCompany">Kurum</label>
+                            <div class="col-md-10">
+                                <input id="inputCompany" asp-for="status.Service.company" class="form-control" type="text" placeholder="@Model.status.Service.company" />
+                                <span class="text-danger fw-bold" asp-validation-for="status.Service.company"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row pt-4">
+                            <label class="col-md-2 col-form-label" for="inputSpecialist">Uzman</label>
+                            <div class="col-md-10">
+                                <input id="inputSpecialist" asp-for="status.Service.specialist" class="form-control" type="text" placeholder="@Model.status.Service.specialist" />
+                                <span asp-validation-for="status.Service.specialist"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label class="col-md-2 col-form-label" for="inputNumber">Numara</label>
+                            <div class="col-md-10">
+                                <input id="inputNumber" asp-for="status.Service.number" class="form-control" type="number" placeholder="@Model.status.Service.number" />
+                                <span asp-validation-for="status.Service.number"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputAdress" class="col-md-2 col-form-label">Adres</label>
+                            <div class="col-md-10">
+                                <textarea id="inputAdress" asp-for="status.Service.adress" class="form-control" placeholder="@Model.status.Service.adress"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputIssue" class="col-md-2 col-form-label">Sorun</label>
+                            <div class="col-md-10">
+                                <textarea id="inputIssue" asp-for="status.Service.issue" class="form-control" placeholder="@Model.status.Service.issue"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputDateTimeStart" class="col-md-2 col-form-label">Başlangıç Tarihi</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="date" id="inputDateTimeStart" asp-for="status.Service.dateOfStart" placeholder="@Model.status.Service.dateOfStart">
+                                <span asp-validation-for="status.Service.dateOfStart"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-4">
+                            <label for="inputDateTimeEnd" class="col-md-2 col-form-label">Bitiş Tarihi</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="date" id="inputDateTimeEnd" asp-for="status.Service.dateOfEnd" placeholder="@Model.status.Service.dateOfEnd">
+                                <span asp-validation-for="status.Service.dateOfEnd"></span>
+                            </div>
+                        </div>
+                        <div class="mt-1 text-end">
+                            <input type="hidden" asp-for="status.id" />
+                            <input type="hidden" asp-for="status.Service.id" />
+                            <input type="hidden" asp-for="status.commonId" value="@Model.status.commonId" />
+                            <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
+                            <input type="hidden" asp-for="status.campusId" value="@Model.status.campusId" />
+                            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+                            <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
+                            <input type="hidden" asp-for="status.bstId" value="ID" />
+            <input type="submit" value="Güncelle" style="background-color:#90A4AE" class="btn text-white col-md-2">
+                            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>

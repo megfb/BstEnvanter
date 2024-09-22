@@ -1,0 +1,108 @@
+﻿@model BstEnvanter.WebUI.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Yeni Kullanıcı";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Kullanıcı Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="register" asp-controller="account" class="col-md-8 p-3 mb-3 border rounded" method="post">
+
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputRegisterName">Ad</label>
+            <div class="col-md-10">
+                <input id="inputRegisterName" asp-for="name" class="form-control" type="text" placeholder="Ad" />
+                <span class="text-danger fw-bold" asp-validation-for="name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterSurname">Soyad</label>
+            <div class="col-md-10">
+                <input asp-for="surname" class="form-control" type="text" placeholder="Soyad" />
+                <span asp-validation-for="surname"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterAge">Yaş</label>
+            <div class="col-md-10">
+                <input id="inputRegisterAge" asp-for="age" class="form-control" type="number" placeholder="Yaş" />
+                <span asp-validation-for="age"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterGender">Cinsiyet</label>
+            <div class="col-md-10">
+                <select asp-for="gender" class="form-select">
+                    <option value="Erkek">Erkek</option>
+                    <option value="Kadın">Kadın</option>
+                </select>
+@*                <input id="inputRegisterGender" asp-for="gender" class="form-control" type="text" placeholder="Cinsiyet" />
+                <span asp-validation-for="gender"></span>*@
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterDepartment">Departman</label>
+            <div class="col-md-10">
+                <input id="inputRegisterDepartment" asp-for="department" class="form-control" type="text" placeholder="Departman" />
+                <span asp-validation-for="department"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterTitle">Ünvan</label>
+            <div class="col-md-10">
+                <input id="inputRegisterTitle" asp-for="title" class="form-control" type="text" placeholder="Ünvan" />
+                <span asp-validation-for="title"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterRoomNo">Oda Numarası</label>
+            <div class="col-md-10">
+                <input id="inputRegisterRoomNo" asp-for="roomNo" class="form-control" type="text" placeholder="Oda Numarası" />
+                <span asp-validation-for="roomNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterEmail">E-Mail</label>
+            <div class="col-md-10">
+                <input id="inputRegisterEmail" asp-for="Email" class="form-control" type="text" placeholder="E-Mail" />
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterPassword">Parola</label>
+            <div class="col-md-10">
+                <input id="inputRegisterPassword" asp-for="password" class="form-control" type="password" placeholder="Parola" />
+                <small class="text-muted">Parola, minimum altı karakter, bir sayı, bir özel karakter, en az bir büyük ve bir küçük türkçe olmayan(Ö,İ,Ç,Ş) karakterler içermelidir.</small><br />
+                <small class="text-muted">Örnek parola:Eİ.mü1</small>
+                <span asp-validation-for="password"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterRePassword">Parola Tekrarı</label>
+            <div class="col-md-10">
+                <input id="inputRegisterRePassword" asp-for="rePassword" class="form-control" type="password" placeholder="Parola Tekrarı" />
+                <span asp-validation-for="rePassword"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label asp-for="role" class="col-md-2 col-form-label" for="inputRegisterRole">Rol</label>
+            <div class="col-md-10">
+                <select asp-for="role" class="form-select" aria-label="Default select example">
+                    <option value="admin">Admin</option>
+                    <option value="editor">Editör</option>
+                    <option value="user">Kullanıcı</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+            <button type="submit" class="btn btn-primary col-md-2">Oluştur</button>
+            <a asp-controller="user" style="background-color:#607D8B" asp-action="listofusers" class="btn text-white col-md-2">Geri</a>
+
+        </div>
+    </form>
+</div>

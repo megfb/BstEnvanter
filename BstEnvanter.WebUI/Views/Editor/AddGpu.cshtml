@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.AddGpuViewModel
+@{
+    ViewData["Title"] = "Yeni Ekran Kartı";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Ekran Kartı Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addgpu" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
+            <div class="col-md-10">
+                <input asp-for="gpu.name" id="inputGpu" class="form-control" type="text" placeholder="Ekran Kartı" />
+                <span class="text-danger" asp-validation-for="gpu.name"></span>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofgpu" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

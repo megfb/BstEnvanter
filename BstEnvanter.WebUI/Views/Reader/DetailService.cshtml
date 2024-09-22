@@ -1,0 +1,211 @@
+﻿@model BstEnvanter.WebUI.Models.DetailServiceViewModel
+@{
+    ViewData["Title"] = "DetailService";
+    Layout = "~/Views/_readerLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Servis Detayları</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="row col-md-12">
+            <div class=" border col-md-4 rounded">
+                <div class="row bg-primary">
+                    <h3 class="pt-3 text-light">Ürün Detayları</h3>
+                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Ad:</td>
+                            <td>@Model.status.Product.name</td>
+                        </tr>
+                        <tr>
+                            <td>Kategori:</td>
+                            @if (Model.status.Product.categoryId != null)
+                            {
+                                <td>@Model.status.Product.Category.name</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Marka:</td>
+                            @if (Model.status.Product.brandId != null)
+                            {
+                                <td>@Model.status.Product.Brand.name</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Model:</td>
+                            @if (Model.status.Product.modelId != null)
+                            {
+                                <td>@Model.status.Product.Model.name</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Seri Numarası:</td>
+                            <td>@Model.status.Product.serialNo</td>
+                        </tr>
+                        <tr>
+                            <td>Envanter Numarası:</td>
+                            <td>@Model.status.Product.inventoryNo</td>
+                        </tr>
+                        <tr>
+                            <td>İşlemci:</td>
+
+                            @if (Model.status.Product.cpuId != null)
+                            {
+                                <td>@Model.status.Product.Cpu.name</td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>Ekran Kartı:</td>
+                            @if (Model.status.Product.gpuId != null)
+                            {
+                                <td>@Model.status.Product.Gpu.name</td>
+                            }
+                        </tr>
+                        <tr>
+
+                            <td>Ram:</td>
+                            @if (Model.status.Product.ramId != null)
+                            {
+                                <td>@Model.status.Product.Ram.name</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Sabit Disk:</td>
+                            @if (Model.status.Product.hardDriveId != null)
+                            {
+                                <td>@Model.status.Product.HardDrive.name</td>
+                            }
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class=" border col-md-4 rounded">
+                <div class="row bg-primary">
+                    <h3 class="pt-3 text-light">Servis Kaydı Detayları</h3>
+                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Kurum:</td>
+                            <td>@Model.status.Service.company</td>
+                        </tr>
+                        <tr>
+                            <td>Uzman:</td>
+                            <td>@Model.status.Service.specialist</td>
+                        </tr>
+                        <tr>
+                            <td>Numara:</td>
+                            <td>@Model.status.Service.number</td>
+                        </tr>
+                        <tr>
+                            <td>Adres:</td>
+                            <td>@Model.status.Service.adress</td>
+                        </tr>
+                        <tr>
+                            <td>Sorun:</td>
+                            <td>@Model.status.Service.issue</td>
+                        </tr>
+                        <tr>
+                            <td>Başlangıç Tarihi:</td>
+                            <td>@Model.status.Service.dateOfStart</td>
+                        </tr>
+                        <tr>
+                            <td>Bitiş Tarihi:</td>
+                            <td>@Model.status.Service.dateOfEnd</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="border border-rounded col-md-4 rounded">
+                <div class="row bg-primary">
+                    <h3 class="pt-3 text-light">Uzman Detayları</h3>
+                </div>
+                @{
+                    if (Model.user != null)
+                    {
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Ad:</td>
+                                    <td>@Model.user.name</td>
+                                </tr>
+                                <tr>
+                                    <td>Soyad:</td>
+                                    <td>@Model.user.surname</td>
+                                </tr>
+                                <tr>
+                                    <td>Yaş:</td>
+                                    <td>@Model.user.age</td>
+                                </tr>
+                                <tr>
+                                    <td>Cinsiyet:</td>
+                                    <td>@Model.user.gender</td>
+                                </tr>
+                                <tr>
+                                    <td>Departman:</td>
+                                    <td>@Model.user.department</td>
+                                </tr>
+                                <tr>
+                                    <td>Lokasyon:</td>
+                                    <td>@Model.user.roomNo</td>
+                                </tr>
+                                <tr>
+                                    <td>E-Mail:</td>
+                                    <td>@Model.user.Email</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Ad:</td>
+                                    @*<td>@Model.status.Personel.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Soyad:</td>
+                                    @*<td>@Model.status.Personel.surname</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Yaş:</td>
+                                    @*<td>@Model.status.Personel.age</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Cinsiyet:</td>
+                                    @*<td>@Model.status.Personel.Sex.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Departman:</td>
+                                    @*<td>@Model.status.Personel.Department.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Lokasyon:</td>
+                                    @*<td>@Model.status.Personel.roomNo</td>*@
+                                </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    @*<td>@Model.status.Personel.roomNo</td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+            <div class="col-md-12 border border-rounded  rounded">
+                <div class="text-end mt-2 pb-3">
+,
+
+                    <a class="btn text-white" style="background-color:#607D8B" asp-action="detailproduct" asp-route-id="@Model.status.id">Geri</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

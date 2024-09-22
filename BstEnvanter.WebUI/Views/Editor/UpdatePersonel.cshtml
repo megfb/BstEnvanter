@@ -1,0 +1,78 @@
+﻿@model BstEnvanter.WebUI.Models.UpdatePersonelViewModel
+@{
+    ViewData["Title"] = "Personel Güncelle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel Güncelle</h1>
+        <hr />
+    </div>
+    <form method="post" asp-action="updatepersonel" class="p-3 border rounded mb-3 col-md-8">
+        <div class="form-group row mb-3">
+            <label for="inputName" class="col-md-2 col-form-label">Ad</label>
+            <div class="col-md-10">
+                <input asp-for="personel.name" id="inputName" class="form-control" type="text" placeholder="Ad" />
+                <span class="text-danger" asp-validation-for="personel.name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="inputSurname" class="col-md-2 col-form-label">Soyad</label>
+            <div class="col-md-10">
+                <input asp-for="personel.surname" class="form-control" type="text" placeholder="Soyad" />
+                <span class="text-danger" asp-validation-for="personel.surname"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputAge" class="col-md-2 col-form-label">Yaş</label>
+            <div class="col-md-10">
+                <input asp-for="personel.age" id="inputAge" value="@Model.personel.age" class="form-control" type="text" placeholder="Yaş" />
+                <span class="text-danger" asp-validation-for="personel.age"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputGender" class="col-md-2 col-form-label">Cinsiyet</label>
+            <div class="col-md-10">
+                <select asp-for="personel.sexId" id="inputGender" class="form-select" asp-items="@(new SelectList(Model.sex,"id","name"))"></select>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputDepartment" class="col-md-2 col-form-label">Departman</label>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="personel.departmentId" data-size="5" id="inputDepartment" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.department)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="inputGender" class="col-md-2 col-form-label">Lokasyon</label>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="personel.cLocationId" data-size="5" id="inputGender" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.cLocation)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputEMail" class="col-md-2 col-form-label">E-Mail</label>
+            <div class="col-md-10">
+                <input asp-for="personel.eMail" id="inputAge" value="@Model.personel.eMail" class="form-control" type="email" placeholder="E-Mail" />
+                <span class="text-danger" asp-validation-for="personel.eMail"></span>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <input type="hidden" asp-for="personel.id" />
+            <button class="btn text-white col-md-2" style="background-color:#90A4AE">Güncelle</button>
+            <a asp-action="detailpersonel" asp-route-id="@Model.personel.id" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+﻿@model BstEnvanter.WebUI.Models.AddHardDriveViewModel
+@{
+    ViewData["Title"] = "Yeni Sabit Disk";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Sabit Disk Ekle</h1>
+        <hr />
+    </div>
+    <form asp-action="addharddrive" class="col-md-8" method="post">
+        <div class="form-group row pt-4">
+            <label for="inputHDD" class="col-md-2 col-form-label">Sabit Disk</label>
+            <div class="col-md-10">
+                <input id="inputHDD" asp-for="hardDrive.name" class="form-control" type="text" placeholder="Sabit Disk" />
+                <span class="text-danger" asp-validation-for="hardDrive.name"></span>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofharddrive" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
+        </div>
+    </form>
+</div>
